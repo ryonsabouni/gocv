@@ -340,6 +340,9 @@ type SimpleBlobDetector struct {
 	// C.SimpleBlobDetector
 	p unsafe.Pointer
 }
+type SimpleBlobDetector_Params struct {
+	p C.SimpleBlobDetectorParams
+}
 
 // NewSimpleBlobDetector returns a new SimpleBlobDetector algorithm
 //
@@ -348,6 +351,14 @@ type SimpleBlobDetector struct {
 //
 func NewSimpleBlobDetector() SimpleBlobDetector {
 	return SimpleBlobDetector{p: unsafe.Pointer(C.SimpleBlobDetector_Create())}
+}
+
+func NewSimpleBlobDetector_WithParams(SimpleBlobDetectorParams params) SimpleBlobDetector {
+	return SimpleBlobDetector{p: unsafe.Pointer(C.SimpleBlobDetector_Create(params))}
+}
+
+func NewSimpleBlobDetector_Params() SimpleBlobDetector_Params {
+	return SimpleBlobDetector_Params{p: unsafe.Pointer(C.SimpleBlobDetector_Params())}
 }
 
 // Close SimpleBlobDetector.

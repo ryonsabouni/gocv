@@ -38,12 +38,6 @@ typedef struct RawData {
     struct ByteArray data;
 } RawData;
 
-// Wrapper for an individual cv::Point2f
-typedef struct Point2f {
-    float x;
-    float y;
-} Point2f;
-
 // Wrapper for an individual cv::cvPoint
 typedef struct Point {
     int x;
@@ -118,6 +112,28 @@ typedef struct KeyPoints {
     KeyPoint* keypoints;
     int length;
 } KeyPoints;
+
+typedef struct SimpleBlobDetectorParams {
+    unsigned char   blobColor;
+    bool    filterByArea;
+    bool    filterByCircularity;
+    bool    filterByColor;
+    bool    filterByConvexity;
+    bool    filterByInertia;
+    float   maxArea;
+    float   maxCircularity;
+    float   maxConvexity;
+    float   maxInertiaRatio;
+    float   maxThreshold;
+    float   minArea;
+    float   minCircularity;
+    float   minConvexity;
+    float   minDistBetweenBlobs;
+    float   minInertiaRatio;
+    size_t  minRepeatability;
+    float   minThreshold;
+    float   thresholdStep;
+} SimpleBlobDetectorParams;
 
 // Wrapper for an individual cv::DMatch
 typedef struct DMatch {
@@ -268,13 +284,9 @@ void Mat_AbsDiff(Mat src1, Mat src2, Mat dst);
 void Mat_Add(Mat src1, Mat src2, Mat dst);
 void Mat_AddWeighted(Mat src1, double alpha, Mat src2, double beta, double gamma, Mat dst);
 void Mat_BitwiseAnd(Mat src1, Mat src2, Mat dst);
-void Mat_BitwiseAndWithMask(Mat src1, Mat src2, Mat dst, Mat mask);
 void Mat_BitwiseNot(Mat src1, Mat dst);
-void Mat_BitwiseNotWithMask(Mat src1, Mat dst, Mat mask);
 void Mat_BitwiseOr(Mat src1, Mat src2, Mat dst);
-void Mat_BitwiseOrWithMask(Mat src1, Mat src2, Mat dst, Mat mask);
 void Mat_BitwiseXor(Mat src1, Mat src2, Mat dst);
-void Mat_BitwiseXorWithMask(Mat src1, Mat src2, Mat dst, Mat mask);
 void Mat_Compare(Mat src1, Mat src2, Mat dst, int ct);
 void Mat_BatchDistance(Mat src1, Mat src2, Mat dist, int dtype, Mat nidx, int normType, int K,
                        Mat mask, int update, bool crosscheck);

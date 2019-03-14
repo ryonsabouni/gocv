@@ -19,6 +19,7 @@ typedef cv::Ptr<cv::MSER>* MSER;
 typedef cv::Ptr<cv::ORB>* ORB;
 typedef cv::Ptr<cv::SimpleBlobDetector>* SimpleBlobDetector;
 typedef cv::Ptr<cv::BFMatcher>* BFMatcher;
+// typedef cv::Ptr<cv::SimpleBlobDetector::Params>* SimpleBlobDetectorParams;
 #else
 typedef void* AKAZE;
 typedef void* AgastFeatureDetector;
@@ -30,6 +31,7 @@ typedef void* MSER;
 typedef void* ORB;
 typedef void* SimpleBlobDetector;
 typedef void* BFMatcher;
+// typedef void* SimpleBlobDetectorParams;
 #endif
 
 AKAZE AKAZE_Create();
@@ -68,9 +70,10 @@ void ORB_Close(ORB o);
 struct KeyPoints ORB_Detect(ORB o, Mat src);
 struct KeyPoints ORB_DetectAndCompute(ORB o, Mat src, Mat mask, Mat desc);
 
-SimpleBlobDetector SimpleBlobDetector_Create();
+SimpleBlobDetector SimpleBlobDetector_Create(SimpleBlobDetector_Params params = NULL);
 void SimpleBlobDetector_Close(SimpleBlobDetector b);
 struct KeyPoints SimpleBlobDetector_Detect(SimpleBlobDetector b, Mat src);
+struct SimpleBlobDetectorParams SimpleBlobDetectorParams_Create()
 
 BFMatcher BFMatcher_Create();
 BFMatcher BFMatcher_CreateWithParams(int normType, bool crossCheck);

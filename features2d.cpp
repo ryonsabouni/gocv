@@ -276,9 +276,46 @@ struct KeyPoints ORB_DetectAndCompute(ORB o, Mat src, Mat mask, Mat desc) {
     return ret;
 }
 
-SimpleBlobDetector SimpleBlobDetector_Create() {
-    // TODO: params
-    return new cv::Ptr<cv::SimpleBlobDetector>(cv::SimpleBlobDetector::create());
+/*
+*  SimpleBlobDetector
+*/
+SimpleBlobDetector::Params::Params()
+{
+    thresholdStep = 10;
+    minThreshold = 50;
+    maxThreshold = 220;
+    minRepeatability = 2;
+    minDistBetweenBlobs = 10;
+
+    filterByColor = true;
+    blobColor = 0;
+
+    filterByArea = true;
+    minArea = 25;
+    maxArea = 5000;
+
+    filterByCircularity = false;
+    minCircularity = 0.8f;
+    maxCircularity = std::numeric_limits<float>::max();
+
+    filterByInertia = true;
+    //minInertiaRatio = 0.6;
+    minInertiaRatio = 0.1f;
+    maxInertiaRatio = std::numeric_limits<float>::max();
+
+    filterByConvexity = true;
+    //minConvexity = 0.8;
+    minConvexity = 0.95f;
+    maxConvexity = std::numeric_limits<float>::max();
+}
+
+
+SimpleBlobDetector SimpleBlobDetector_Create(SimpleBlobDetectorParams params=NULL) {
+    return new cv::Ptr<cv::SimpleBlobDetector>(cv::SimpleBlobDetector::create(params));
+}
+
+struct SimpleBlobDetectorParams SimpleBlobDetectorParams_Create() {
+    return cv::SimpleBlobDetector::Params::Params()
 }
 
 void SimpleBlobDetector_Close(SimpleBlobDetector b) {
