@@ -226,6 +226,14 @@ func TestSimpleBlobDetector(t *testing.T) {
 	if len(kp) != 2 {
 		t.Errorf("Invalid KeyPoint array in SimpleBlobDetector test: %d", len(kp))
 	}
+
+	params := NewSimpleBlobDetector_Params()
+	bdp := NewSimpleBlobDetector_WithParams(params)
+
+	kp2 := bdp.Detect(img)
+	if len(kp2) != 2 {
+		t.Errorf("Invalid KeyPoint array in SimpleBlobDetector test: %d", len(kp))
+	}
 }
 
 func TestBFMatcher(t *testing.T) {
